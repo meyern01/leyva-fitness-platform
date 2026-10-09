@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏋️ Leyva Fitness — Plataforma para entrenador personal
+# Leyva Fitness — Plataforma para entrenador personal
 
 **Portal dual entrenador/cliente con autenticación independiente, seguridad "deny-all" y cálculo automático de macros.**
 <br/>
@@ -14,41 +14,41 @@
 
 </div>
 
-<!-- 📸 Agrega aquí una captura del editor de rutinas (guárdala en /docs):
+<!-- Agrega aquí una captura del editor de rutinas (guárdala en /docs):
 <p align="center"><img src="docs/editor.png" width="90%" alt="Editor de rutinas" /></p>
 -->
 
 ---
 
-## 📌 El problema · The problem
+## El problema · The problem
 
 Un entrenador personal necesitaba entregar rutinas y planes de alimentación a sus clientes en un solo lugar, sin exponer los datos de un cliente a otro.
 
 > *A personal trainer needed one place to deliver workouts and meal plans without exposing one client's data to another.*
 
-## ✨ Funcionalidades · Features
+## Funcionalidades · Features
 
-- 👥 **Portal dual**: uno para el entrenador y otro para sus clientes, con **dos sistemas de autenticación JWT independientes** y contraseñas cifradas con bcrypt.
-- 🏋️ **Editor de rutinas y dietas** para cada cliente.
-- 🥗 **Cálculo automático de macros** con la API de USDA FoodData Central.
-- ✉️ Correos transaccionales con Resend.
+- **Portal dual**: uno para el entrenador y otro para sus clientes, con **dos sistemas de autenticación JWT independientes** y contraseñas cifradas con bcrypt.
+- **Editor de rutinas y dietas** para cada cliente.
+- **Cálculo automático de macros** con la API de USDA FoodData Central.
+- Correos transaccionales con Resend.
 
-## 🔐 Arquitectura "deny-all" · Security
+## Arquitectura "deny-all" · Security
 
 El navegador **no tiene acceso directo a la base de datos**. Todo pasa por Edge Functions que validan el rol antes de leer o escribir.
 
 ```mermaid
 flowchart LR
-    T["🧑‍🏫 Entrenador"] --> EF["Edge Functions (Deno)"]
-    C["🙋 Cliente"] --> EF
+    T["Entrenador"] --> EF["Edge Functions (Deno)"]
+    C["Cliente"] --> EF
     EF -- "valida JWT y rol" --> DB[("PostgreSQL")]
-    T -. "acceso directo ⛔" .-> DB
-    C -. "acceso directo ⛔" .-> DB
+    T -. "acceso directo bloqueado" .-> DB
+    C -. "acceso directo bloqueado" .-> DB
     EF --> USDA["USDA FoodData API"]
     EF --> RS["Resend"]
 ```
 
-## 🧰 Stack
+## Stack
 
 | Capa | Tecnología |
 |---|---|
@@ -58,7 +58,7 @@ flowchart LR
 | Integraciones | USDA FoodData Central API · Resend |
 | Seguridad | JWT independientes por rol · bcrypt · deny-all |
 
-## 📸 Capturas · Screenshots
+## Capturas · Screenshots
 
 <!-- Agrega capturas en /docs y descomenta:
 | Portal entrenador | Portal cliente | Macros |
@@ -66,7 +66,7 @@ flowchart LR
 | ![](docs/entrenador.png) | ![](docs/cliente.png) | ![](docs/macros.png) |
 -->
 
-## 🔒 Código · Source code
+## Código · Source code
 
 El código es **privado por acuerdo con el cliente**. Puedo mostrar una demostración en vivo en entrevista.
 <br/>*Source code is private under client agreement — live walkthrough available on request.*
